@@ -199,3 +199,11 @@ Apache License
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+
+---------------
+E_mysqli is an extension to the PHP scripting language, which is released
+under it's own accord and under, to my knowledge, a license compatible with this
+one. As of 2014-07-25, license information for PHP was available at:
+
+http://www.php.net/license/
+
