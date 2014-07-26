@@ -15,11 +15,11 @@ __E_mysqli__ aims to ease this burden by providing developers the ability to vie
 be an example of the query executed on the server:
 
 ```php
-$query 	= "INSERT INTO registration SET name = ?, email = ?";
-$stmt 	 = $mysqli->prepare($query);
+$query 		= "INSERT INTO registration SET name = ?, email = ?";
+$stmt 		= $mysqli->prepare($query);
 
-$name 	 = $_POST['name'];
-$email 	= $_POST['email'];
+$name 		= $_POST['name'];
+$email 		= $_POST['email'];
 
 $stmt->bind_param("ss", $name, $email);
 
@@ -44,11 +44,11 @@ INSERT INTO registration SET name = 'Sue O\'Reilly', email = 'sue.o@example.com'
 It's also possible to view the interpolated query string without executing the query:
 
 ```php
-$query 	= "INSERT INTO registration SET name = ?, email = ?";
-$stmt 	 = $mysqli->prepare($query);
+$query 		= "INSERT INTO registration SET name = ?, email = ?";
+$stmt 		= $mysqli->prepare($query);
 
-$name 	 = $_POST['name'];
-$email 	= $_POST['email'];
+$name 		= $_POST['name'];
+$email 		= $_POST['email'];
 
 $stmt->bind_param("ss", $name, $email);
 
@@ -63,8 +63,8 @@ query string is generated in separate method/function calls.
 This is accomplished by binding the parameters individually:
 
 ```php
-$name 	 = $_POST['name'];
-$email 	= $_POST['email'];
+$name 		= $_POST['name'];
+$email 		= $_POST['email'];
 
 $stmt->bind_param("s", $name);
 $stmt->bind_param("s", $email);
@@ -73,9 +73,9 @@ $stmt->bind_param("s", $email);
 or as an array:
 
 ```php
-$params = array();
-$params[] = $_POST['name'];
-$params[] = $_POST['email'];
+$params 	= array();
+$params[] 	= $_POST['name'];
+$params[] 	= $_POST['email'];
 
 $stmt->bind_param("ss", $params);
 ```
@@ -85,16 +85,16 @@ variables preventing the need to rebind parameters, which is the default method 
 bound parameters in mysqli:
 
 ```php
-$name 	= "John Doe";
-$email 	= "john.doe@example.com";
+$name 		= "John Doe";
+$email 		= "john.doe@example.com";
 
 $stmt->bindParam("s", $name);
 $stmt->bindParam("s", $email);
 
 $stmt->execute(); // INSERT INTO registration SET name = 'John Doe', email = 'john.doe@example.com'
 
-$name 	= "Sue O'Reilly";
-$email 	= "sue.o@example.com";
+$name 		= "Sue O'Reilly";
+$email 		= "sue.o@example.com";
 
 $stmt->execute(); // INSERT INTO registration SET name = 'Sue O\'Reilly', email = 'sue.o@example.com'
 ```
@@ -104,15 +104,15 @@ reference is not possible (yet) in order to store a local reference of the bound
 allowing the value to be interpolated into the query string:
 
 ```php
-$name 	= "John Doe";
-$email 	= "john.doe@example.com";
+$name 		= "John Doe";
+$email 		= "john.doe@example.com";
 
 $stmt->bindParam("s", $name, $email);
 
 $stmt->execute(); // INSERT INTO registration SET name = 'John Doe', email = 'john.doe@example.com'
 
-$name 	= "Sue O'Reilly";
-$email 	= "sue.o@example.com";
+$name 		= "Sue O'Reilly";
+$email 		= "sue.o@example.com";
 
 $stmt->execute(); // INSERT INTO registration SET name = 'John Doe', email = 'john.doe@example.com'
 ```
