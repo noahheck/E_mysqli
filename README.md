@@ -99,9 +99,11 @@ $email 		= "sue.o@example.com";
 $stmt->execute(); // INSERT INTO registration SET name = 'Sue O\'Reilly', email = 'sue.o@example.com'
 ```
 
-The default functionality of mysqli_stmt::bind_param in which all parameters are passed by 
-reference is not possible (yet) in order to store a local reference of the bound parameter, 
-allowing the value to be interpolated into the query string:
+The default functionality of `mysqli_stmt::bind_param` in which all parameters are passed by 
+reference is __not__ possible with the enhanced functionality (yet). In order to store a 
+local reference of the bound parameter, allowing the value to be interpolated into the query 
+string, this default functionality had to unfortunately be overwritten:
+_ __Note__ that the bound values don't change even when the input parameters are updated_
 
 ```php
 $name 		= "John Doe";
@@ -121,8 +123,8 @@ In order to accomodate a variable number of function arguments, the
 variable access by reference.
 
 When php 5.6 is released (currently in beta/RC status), variable access by reference will be
-possible in variable argument functions via the `...`token/splat operator. For more 
-information, see the [manual page](http://php.net/manual/en/functions.arguments.php#functions.variable-arg-list).
+possible in variable argument (variadic) functions via the `...`token/splat operator. For 
+more information, see the [manual page](http://php.net/manual/en/functions.arguments.php#functions.variable-arg-list).
 
 ##Installation
 Download the file...put it into a suitable location in your application directory.
