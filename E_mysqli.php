@@ -123,6 +123,8 @@ class E_mysqli_stmt extends \mysqli_stmt
 				, "value" 	=> &$value
 			);
 		}
+		
+		return true;
 	}
 
 	/**
