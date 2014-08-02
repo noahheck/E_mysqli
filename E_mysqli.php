@@ -72,7 +72,7 @@ class E_mysqli_stmt extends \mysqli_stmt
 	 * @param string $type
 	 * @param mixed $value
 	 */
-	public function bind_param($type, &$value)
+	public function bind_param($type, &$value = null)
 	{
 		$numArgs = func_num_args();
 
