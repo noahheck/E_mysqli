@@ -1,0 +1,28 @@
+{
+      "name"        : "noahheck/e_mysqli"
+    , "description" : "Replacement for default Mysqli class to allow viewing a bound query with the arguments injected into the string"
+    , "keywords"    : ["mysqli", "mysql", "debug", "debugger", "query", "sql", "replacement"]
+    , "homepage"    : "https://github.com/noahheck/E_mysqli"
+    , "license"     : "Apache-2.0"
+    , "authors"     : [
+        {
+              "name"     : "Noah Heck"
+            , "role"     : "Developer/Project Manager"
+            , "email"    : "myesain84@gmail.com"
+            , "homepage" : "https://github.com/noahheck"
+        }
+    ]
+    , "require"     : {
+        "php"                   : ">=5.6.0"
+    }
+    , "require-dev" : {
+          "phpunit/phpunit"     : "4.8.*"
+        , "phpunit/php-invoker" : "*"
+        , "phpunit/dbunit"      : "*"
+    }
+    , "autoload"    : {
+        "psr-4" : {
+            "EMysqli\\" : "src"
+        }
+    }
+}
