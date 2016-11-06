@@ -23,24 +23,24 @@ use mysqli_stmt;
 class EMysqliStmt extends mysqli_stmt
 {
 	/**
-	 * @var E_mysqli $mysqli
+	 * @var EMysqli
 	 */
 	private $mysqli;
 
 	/**
-	 * @var string $queryString - the unchanged query string provided to the constructor
+	 * @var string - the unchanged query string provided to the constructor
 	 */
 	public $queryString;
 
 	/**
-	 * @var string $fullQuery - the query string with bound parameters interpolated
-	 */
-	public $fullQuery;
-
-	/**
-	 * @var array $boundParams - array of arrays containing values that have been bound to the query as parameters
+	 * @var array - array of arrays containing values that have been bound to the query as parameters
 	 */
 	private $boundParams = array();
+
+	/**
+	 * @var string - the query string with bound parameters interpolated
+	 */
+	public $fullQuery;
 
 	/**
 	 * The first argument should be an instance of mysqli or descendent. If so, we'll cache it's reference locally to be
@@ -65,9 +65,6 @@ class EMysqliStmt extends mysqli_stmt
 	 */
 	public function bind_param($type, &...$vars)
 	{
-		/**
-		 *
-		 */
 		if ($vars) {
 			$types = str_split($type);
 			$arg   = 0;
