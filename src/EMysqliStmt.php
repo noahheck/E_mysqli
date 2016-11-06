@@ -111,17 +111,17 @@ class EMysqliStmt extends mysqli_stmt
 	{
 		$testQuery 	= $this->queryString;
 
-		if ($this->boundParams)
-		{
-			foreach ($this->boundParams as $param)
-			{
-				$type 	= $param['type'];
-				$value 	= $param['value'];
+		if ($this->boundParams) {
 
-				$replValue 	= $this->prepareValue($value, $type);
+			foreach ($this->boundParams as $param) {
+				$type  = $param['type'];
+				$value = $param['value'];
 
-				$testQuery 	= preg_replace("/\?/", $replValue, $testQuery, 1);
+				$replValue = $this->prepareValue($value, $type);
+
+				$testQuery = preg_replace("/\?/", $replValue, $testQuery, 1);
 			}
+
 		}
 
 		$this->fullQuery = $testQuery;
@@ -138,13 +138,12 @@ class EMysqliStmt extends mysqli_stmt
 	 */
 	private function buildArguments()
 	{
-		$arguments 		= array();
-		$arguments[0] 	= "";
+		$arguments    = array();
+		$arguments[0] = "";
 
-		foreach ($this->boundParams as $param)
-		{
-			$arguments[0] 	.= $param['type'];
-			$arguments[] 	= &$param['value'];
+		foreach ($this->boundParams as $param) {
+			$arguments[0] .= $param['type'];
+			$arguments[]   = &$param['value'];
 		}
 
 		return $arguments;
@@ -171,14 +170,12 @@ class EMysqliStmt extends mysqli_stmt
 			return (int) $value;
 		}
 
+		// I don't anticipate this situation should ever be realized, but will handle it here anyway
 		if (!$this->mysqli) {
 			return "'" . addslashes($value) . "'";
 		}
 
-		$value = $this->mysqli->real_escape_string($value);
-
-		return "'" . $value . "'";
-
+		return "'" . $this->mysqli->real_escape_string($value) . "'";
 	}
 }
 
