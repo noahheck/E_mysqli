@@ -113,15 +113,16 @@ class EMysqliStmt extends mysqli_stmt
 
 		if ($this->boundParams) {
 
-			foreach ($this->boundParams as $param) {
+			$queryPieces = preg_split("/\?/", $testQuery);
+
+			foreach ($this->boundParams as $key => $param) {
 				$type  = $param['type'];
 				$value = $param['value'];
 
-				$replValue = $this->prepareValue($value, $type);
-
-				$testQuery = preg_replace("/\?/", $replValue, $testQuery, 1);
+				$queryPieces[$key] .= $this->prepareValue($value, $type);
 			}
 
+			$testQuery = implode("", $queryPieces);
 		}
 
 		$this->fullQuery = $testQuery;

@@ -223,6 +223,26 @@ class EMysqliStmtTest extends PHPUnit_Framework_TestCase
 
 
 
+	public function testInterpolationSucceedsEvenWhenReplacementValueContainsAPlaceholderCharacter()
+	{
+		$query = "INSERT INTO notes SET note = ?, contact_id = ?";
+
+		$note      = "Some string that contains a ?";
+		$contactId = 1;
+
+		$expected = "INSERT INTO notes SET note = 'Some string that contains a ?', contact_id = 1";
+
+		$stmt = $this->getPreparedStatement($query);
+
+		$stmt->bind_param("si", $note, $contactId);
+
+		$result = $stmt->interpolateQuery();
+
+		$this->assertEquals($expected, $result);
+	}
+
+
+
 	public function testQueryIsNotChangedIfNoParametersUsedInQuery()
 	{
 		$query = "INSERT INTO contacts SET first_name = 'Noah', last_name = 'Heck'";
