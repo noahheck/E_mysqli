@@ -30,15 +30,18 @@ class EMysqliTest extends PHPUnit_Framework_TestCase
 	protected $eMysqli;
 
 	/**
-	 *
+	 * @return array
 	 */
 	protected function getConfig()
 	{
-		return include dirname(__FILE__) . "/../config/config.php";
+		return require dirname(__FILE__) . "/../config/config.php";
 	}
 
 	/**
+	 * Returns an instance of the EMysqli object - if this is the first time asking for it, a new instance is created
+	 * and cached to be returned on subsequent calls
 	 *
+	 * @return EMysqli
 	 */
 	protected function getEMysqli()
 	{

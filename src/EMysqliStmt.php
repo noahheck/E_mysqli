@@ -152,13 +152,7 @@ class EMysqliStmt extends mysqli_stmt
 	/**
 	 * Escapes the supplied value according to mysqli::real_escape_string which we should have cached a reference to an
 	 * active connection at construct. The result of that is wrapped in apostrophes as well if the bound parameter is
-	 * not identified as an integer. We've also provided an unsafe method for escaping the value in case our object is
-	 * modified to not have reference to a mysqli, but hopefully that won't be the case.
-	 *
-	 *  	addslashes is not suitable for production logging, etc. You can update this method to perform the necessary
-	 * 		escaping translations for your database driver. Please consider updating your processes to provide a valid
-	 * 		PDO object that can perform the necessary translations and can be updated with your i.e. package management,
-	 * 		PEAR updates, etc.
+	 * not identified as an integer.
 	 *
 	 * @param mixed $value
 	 * @param string $type (one of 'i', 'b', 's', 'd')
@@ -168,11 +162,6 @@ class EMysqliStmt extends mysqli_stmt
 	{
 		if ('i' === $type) {
 			return (int) $value;
-		}
-
-		// I don't anticipate this situation should ever be realized, but will handle it here anyway
-		if (!$this->mysqli) {
-			return "'" . addslashes($value) . "'";
 		}
 
 		return "'" . $this->mysqli->real_escape_string($value) . "'";
