@@ -1,6 +1,6 @@
 {
       "name"        : "noahheck/e_mysqli"
-    , "description" : "Replacement for default Mysqli class to allow viewing a bound query with the arguments injected into the string"
+    , "description" : "Replacement for default Mysqli class to allow viewing a parameterized query with the arguments inserted into the string"
     , "keywords"    : ["mysqli", "mysql", "debug", "debugger", "query", "sql", "replacement"]
     , "homepage"    : "https://github.com/noahheck/E_mysqli"
     , "license"     : "Apache-2.0"
