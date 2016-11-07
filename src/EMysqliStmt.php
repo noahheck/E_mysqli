@@ -105,6 +105,9 @@ class EMysqliStmt extends mysqli_stmt
 	/**
 	 * Copies $this->queryString then replaces bound markers with associated values ($this->queryString is not modified
 	 * but the resulting query string is assigned to $this->fullQuery)
+	 *
+	 * The regex here was modified from this StackOverflow answer: http://stackoverflow.com/a/632552/2422852
+	 *
 	 * @return str $testQuery - interpolated db query string
 	 */
 	public function interpolateQuery()
