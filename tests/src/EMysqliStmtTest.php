@@ -243,6 +243,32 @@ class EMysqliStmtTest extends PHPUnit_Framework_TestCase
 
 
 
+	public function testInterpolationSucceedsEvenWhenReplacementValueContainsAPlaceholderCharacterAndQuerySpansMultipleLines()
+	{
+		$query = "INSERT INTO notes SET note = ?, contact_id = ?";
+
+		$note      = "Some string that contains a ?
+						or two ? and spans multiple lines";
+		$contactId = 1;
+
+		$expected = "INSERT INTO notes SET note = 'Some string that contains a ?
+						or two ? and spans multiple lines', contact_id = 1";
+
+		$stmt = $this->getPreparedStatement($query);
+
+		$stmt->bind_param("si", $note, $contactId);
+
+		$result = $stmt->interpolateQuery();
+
+		/**
+		 * The str_replace is here because mysqli::real_escape_string escapes \n characters as well, and this makes the
+		 * test more readable (?)
+		 */
+		$this->assertEquals($expected, str_replace("\\n", "\n", $result));
+	}
+
+
+
 	public function testQueryIsNotChangedIfNoParametersUsedInQuery()
 	{
 		$query = "INSERT INTO contacts SET first_name = 'Noah', last_name = 'Heck'";
