@@ -161,6 +161,11 @@ class EMysqliStmt extends mysqli_stmt
 	 */
 	private function prepareValue($value, $type)
 	{
+		if ($value === NULL)
+		{
+			return 'NULL';
+		}
+
 		if ('i' === $type) {
 			return (int) $value;
 		}
