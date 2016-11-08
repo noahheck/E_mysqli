@@ -277,4 +277,25 @@ class EMysqliStmtTest extends PHPUnit_Framework_TestCase
 
 		$this->assertEquals($query, $stmt->interpolateQuery());
 	}
+
+
+
+	public function testNullValuesAreInterpolatedIntoQuerySuccessfullyAsDBNullValues()
+	{
+		$query = "INSERT INTO contacts SET first_name = ?, last_name = ?, email = ?";
+
+		$firstName = "Noah";
+		$lastName  = null;
+		$email     = "";
+
+		$expected = "INSERT INTO contacts SET first_name = 'Noah', last_name = NULL, email = ''";
+
+		$stmt = $this->getPreparedStatement($query);
+
+		$stmt->bind_param("sss", $firstName, $lastName, $email);
+
+		$result = $stmt->interpolateQuery();
+
+		$this->assertEquals($expected, $result);
+	}
 }

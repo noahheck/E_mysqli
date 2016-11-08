@@ -30,7 +30,7 @@ class EMysqliStmt extends mysqli_stmt
 	/**
 	 * @var string - the unchanged query string provided to the constructor
 	 */
-	public $queryString;
+	private $queryString;
 
 	/**
 	 * @var array - array of arrays containing values that have been bound to the query as parameters
@@ -161,8 +161,7 @@ class EMysqliStmt extends mysqli_stmt
 	 */
 	private function prepareValue($value, $type)
 	{
-		if ($value === NULL)
-		{
+		if ($value === NULL) {
 			return 'NULL';
 		}
 
