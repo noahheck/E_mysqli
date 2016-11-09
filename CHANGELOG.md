@@ -1,8 +1,14 @@
-##Change Log
+## Change Log
 
-###2.0.0 (2016-11-06)
+### 2.1.0 (2016-11-07)
 
-####Added
+#### Added
+
+- Handle null values
+
+### 2.0.0 (2016-11-06)
+
+#### Added
 
 - Composer integration
 - Full PHPUnit Test Suite
