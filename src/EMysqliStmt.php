@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 github.com/noahheck
+ * Copyright 2017 github.com/noahheck
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,6 +62,8 @@ class EMysqliStmt extends mysqli_stmt
 	 *
 	 * @param string $type
 	 * @param mixed $vars
+     *
+     * @return bool
 	 */
 	public function bind_param($type, &...$vars)
 	{
@@ -87,7 +89,7 @@ class EMysqliStmt extends mysqli_stmt
 	 * We interpolate our values into the fullQuery variable, then call the parent::bind_param so the values are
 	 * actually sent to the db server. Then we execute the query statement.
 	 *
-	 * @return parent::execute response
+	 * @return bool
 	 */
 	public function execute()
 	{
@@ -108,7 +110,7 @@ class EMysqliStmt extends mysqli_stmt
 	 *
 	 * The regex here was modified from this StackOverflow answer: http://stackoverflow.com/a/632552/2422852
 	 *
-	 * @return str $testQuery - interpolated db query string
+	 * @return string $testQuery - interpolated db query string
 	 */
 	public function interpolateQuery()
 	{
