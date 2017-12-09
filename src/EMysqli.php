@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 github.com/noahheck
+ * Copyright 2017 github.com/noahheck
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ class EMysqli extends mysqli
 	/**
 	 * We just want to overwrite the default prepare method to return our own mysqli_stmt class
 	 * @param 	string $query - the query string
-	 * @return 	E_mysqli_stmt
+	 * @return 	EMysqliStmt
 	 */
 	public function prepare($query)
 	{

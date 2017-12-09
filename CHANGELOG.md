@@ -1,5 +1,10 @@
 ## Change Log
 
+#### Fixed
+
+- Update copyright date
+- Fixed comments (per PhpStorm)
+
 ### 2.1.0 (2016-11-07)
 
 #### Added
