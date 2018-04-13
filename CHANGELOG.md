@@ -1,5 +1,9 @@
 ## Change Log
 
+### 2.1.1 (2018-04-12)
+
+- Fixed back reference syntax issue
+
 #### Fixed
 
 - Update copyright date
