@@ -52,7 +52,7 @@ class EMysqliStmt extends mysqli_stmt
     {
         $this->mysqli      = $mysqli;
         $this->queryString = $query;
-
+        
         parent::__construct($mysqli, $query);
     }
 
@@ -65,7 +65,7 @@ class EMysqliStmt extends mysqli_stmt
      *
      * @return bool
      */
-    public function bind_param($type, &...$vars)
+    public function bind_param($type, &...$vars) : bool
     {
         if ($vars) {
             $types = str_split($type);
@@ -91,7 +91,7 @@ class EMysqliStmt extends mysqli_stmt
      *
      * @return bool
      */
-    public function execute()
+    public function execute(?array $params = null) : bool
     {
         $this->interpolateQuery();
 
@@ -185,4 +185,3 @@ class EMysqliStmt extends mysqli_stmt
         return "'" . $this->mysqli->real_escape_string($value) . "'";
     }
 }
-
