@@ -26,7 +26,7 @@ class EMysqli extends mysqli
 	 * @param 	string $query - the query string
 	 * @return 	EMysqliStmt
 	 */
-	public function prepare($query)
+	public function prepare(string $query) : EMysqliStmt | false
 	{
 		return new EMysqliStmt($this, $query);
 	}
